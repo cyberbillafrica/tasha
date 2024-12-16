@@ -117,17 +117,15 @@
     </nav>
     <!-- Navbar End -->
 
-
-
 <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid page-header py-5 mb-3 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
-            <h1 class="display-3 text-white animated slideInRight">Solar Energy Power Calculator</h1>
+            <h3 class="display-3 text-white animated slideInRight">Solar Energy Power Calculator</h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb animated slideInRight mb-0">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Energy Needs</li>
+                    <li class="breadcrumb-item"><a href="contact.html">Contact</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Calculator</li>
                 </ol>
             </nav>
         </div>
@@ -135,31 +133,31 @@
     <!-- Page Header End -->
     
     <div class="container">
-        <h1 class="text-center">Solar Inverter System Calculator</h1>
-        
+        <h1 class="text-center" style="color: #26d48c;">Solar Inverter System Calculator</h1>
         <!-- User Details Section -->
         <h5>Fill in your Personal Details</h5><div id="user-details" class="mb-4">
             <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userName" placeholder="Name" required>
-                <label for="userName">Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="Enter your Name" required>
+                <label for="userName">Enter your Name</label>
             </div>
             <div class="form-floating mt-3">
-                <input type="tel" class="form-control" id="userPhone" placeholder="Phone Number" required>
-                <label for="userPhone">Phone Number</label>
+                <input type="tel" class="form-control" id="userPhone" placeholder="Enter Phone Number" required>
+                <label for="userPhone">Enter Phone Number</label>
             </div>
             <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userLocation" placeholder="Location" required>
-                <label for="userLocation">Location</label>
+                <input type="text" class="form-control" id="userLocation" placeholder="Enter Location (Town and City) " required>
+                <label for="userLocation">Enter Location (Town and State)</label>
             </div>
-        </div>    
-    
-    <!-- Appliance Input Section -->
+        </div>
+        
+        <!-- Appliance Input Section -->
        <h5>Fill in your Appliances</h5>
+        <small><i>Enter the quantity of each of the appliances you have and will want the Solar system to power. Ignore those not available.</i></small>
         <div id="form-container"></div>
         
         <!-- Calculate Button -->
         <div style="display: flex; justify-content: center;">
-  <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 10px;">Calculate</button>
+  <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 15px;">Calculate</button>
 </div>
 
     <!-- Results Section -->
@@ -223,20 +221,40 @@
             </div>`;
     });
 
-    // Function to send data to Google Sheets
-    async function saveLeadToGoogleSheet(data) {
-        const scriptURL = "https://script.google.com/macros/s/AKfycbw50DvGtF7lMqSYOgpjLL7f14Su178kVdQCGANp4QZJOQaRqTcnXIpqMfOBqlvwbREzug/exec"; // Replace with your Google Apps Script URL
-        try {
-            await fetch(scriptURL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-        } catch (error) {
-            console.error("Error saving lead data:", error);
-        }
-    }
+  
+    function sendDataToSheet(name, phone, location, totalPower, totalCost) {
+  const url = "https://script.google.com/macros/s/AKfycbw50DvGtF7lMqSYOgpjLL7f14Su178kVdQCGANp4QZJOQaRqTcnXIpqMfOBqlvwbREzug/exec"; // Replace with your Web App URL
 
+  const data = {
+    name: name,
+    phone: phone,
+    location: location,
+    totalPower: totalPower,
+    totalCost: totalCost
+  };
+
+  // Send the data silently via POST request
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "duplicate") {
+        console.warn("Duplicate entry detected:", data.message);
+      } else if (data.status === "success") {
+        console.log("Data sent successfully:", data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Error sending data to sheet:", error);
+    });
+}
+
+    
     // Calculate Total Power and Materials
     document.getElementById("calculateBtn").addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
@@ -249,25 +267,25 @@
             return;
         }
 
-        // Validate phone number (must be a valid Nigerian number with exactly 11 digits)
-        const phoneRegex = /^(070|080|081|090|091|071|093|094|095|096|097|098|099)[0-9]{8}$/;
-        if (!phoneRegex.test(phone)) {
-            alert("Please enter a valid Nigerian phone number with 11 digits.");
-            return;
+            // Validate phone number (must be a valid Nigerian number with exactly 11 digits)
+    const phoneRegex = /^(070|080|081|090|091|071|093|094|095|096|097|098|099)[0-9]{8}$/;
+    if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid Nigerian phone number with 11 digits.");
+        return;
+    }
+
+    // Validate power consumption input fields: Ensure that the user enters valid numbers
+    let isValid = true;
+    Object.keys(appliances).forEach((appliance, index) => {
+        const quantity = document.getElementById(`appliance-${index}`).value;
+        if (quantity && (isNaN(quantity) || quantity < 0)) {
+            alert(`Please enter a valid number for ${appliance}.`);
+            isValid = false;
         }
+    });
 
-        // Validate power consumption input fields
-        let isValid = true;
-        Object.keys(appliances).forEach((appliance, index) => {
-            const quantity = document.getElementById(`appliance-${index}`).value;
-            if (quantity && (isNaN(quantity) || quantity < 0)) {
-                alert(`Please enter a valid number for ${appliance}.`);
-                isValid = false;
-            }
-        });
-
-        if (!isValid) return;
-
+    if (!isValid) return;
+        
         let totalPower = 0;
         Object.values(appliances).forEach((watt, index) => {
             const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
@@ -281,7 +299,7 @@
         const inverterCapacity = ["1kVA", "1.5kVA", "2kVA", "2.5kVA", "3kVA", "3.5kVA", "5kVA", "7.5kVA", "10kVA"][inverterIndex];
         const inverterCost = pricing.inverters[inverterIndex];
 
-        // Determine Batteries
+        // Determine Batteries (1kVA -> 1 battery, 1.5kVA -> 2 batteries, etc.)
         const batteries = inverterIndex === 0 ? 1 : inverterIndex === 1 ? 2 : inverterIndex <= 3 ? 4 :
             inverterIndex <= 5 ? 8 : inverterIndex <= 7 ? 12 : 16;
         const batteryCost = batteries * pricing.batteries;
@@ -317,17 +335,10 @@
         document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
         document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
 
-        // Send data to Google Sheets
-        saveLeadToGoogleSheet({
-            name,
-            phone,
-            location,
-            totalPower,
-            totalCost,
-            timestamp: new Date().toISOString()
-        });
-
-        // WhatsApp Link
+        // Silently send data to Google Sheets
+  sendDataToSheet(name, phone, location, totalPower, totalCost);
+        
+    // Generate WhatsApp Link
         const whatsappNumber = "2348022987177"; // Replace with the expert's WhatsApp number
         const message = encodeURIComponent(
             `Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:\n` +
@@ -343,19 +354,22 @@
             `I would like to discuss my specific needs.`
         );
 
-        document.getElementById("result").insertAdjacentHTML("beforeend", `
-          <div class="mt-3">
-            <hr>
-            <p><i>Want to learn more, have specific questions or discuss further?</i></p>
-            <a href="https://wa.me/${whatsappNumber}?text=${message}" 
-               class="btn btn-primary" 
-               target="_blank">
-               Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
-            </a>
-          </div>
-        `);
+        // Insert WhatsApp Link after the results section
+document.getElementById("result").insertAdjacentHTML("beforeend", `
+  <div class="mt-3">
+    <hr>
+    <p><i>Want to learn more, have specific questions or discuss further?</i></p>
+    <a href="https://wa.me/${whatsappNumber}?text=${message}" 
+       class="btn btn-primary" 
+       target="_blank">
+       Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
+    </a>
+  </div>
+     `);
     });
 </script>
+
+     
 
         <!-- Copyright Start -->
     <div class="container-fluid copyright bg-dark py-4">
