@@ -211,8 +211,13 @@
     transition: .5s;
 }
 
-.page-header {
+/*.page-header {
     background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../img/carousel-1.jpg) center center no-repeat;
+    background-size: cover;
+} */
+
+.page-header {
+    background: linear-gradient(to right, rgba(2, 36, 91, 1) 0%, rgba(2, 36, 91, 0) 100%), url(../img/tasha.jpeg) center center no-repeat;
     background-size: cover;
 }
 
