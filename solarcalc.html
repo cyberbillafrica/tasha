@@ -224,31 +224,7 @@
    </div>`;
         });
 
-        // Function to send data to Google Sheets via Apps Script
-        function sendDataToSheet(name, phone, location, totalPower, totalCost) {
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbxAObX3CXtfhdnnDHsGqozwHr29nRK7Hy51L2V5xhYl4zx1EBLBkeB_Oomi7EKpXsbVfQ/exec";  // Replace with your Apps Script Web App URL
-            
-            const formData = new FormData();
-            formData.append("name", name);
-            formData.append("phone", phone);
-            formData.append("location", location);
-            formData.append("totalPower", totalPower);
-            formData.append("totalCost", totalCost);
-
-            fetch(scriptUrl, {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    console.log("Data submitted successfully.");
-                }
-            })
-            .catch(error => {
-                console.error('Error submitting data:', error);
-            });
-        }
+       
     
     // Calculate Total Power and Materials
     document.getElementById("calculateBtn").addEventListener("click", () => {
