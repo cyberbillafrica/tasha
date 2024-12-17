@@ -220,10 +220,6 @@
                 <label for="appliance-${index}">${appliance}</label>
             </div>`;
     });
-
-   </div>`;
-        });
-
        
      // Function to send data to Google Sheets via Apps Script
         function sendDataToSheet(name, phone, location, totalPower, totalCost) {
@@ -250,6 +246,7 @@
                 console.error('Error submitting data:', error);
             });
         }
+    
     // Calculate Total Power and Materials
     document.getElementById("calculateBtn").addEventListener("click", () => {
         const name = document.getElementById("userName").value.trim();
