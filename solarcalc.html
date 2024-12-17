@@ -174,7 +174,188 @@
             <h3 id="totalCost" style="color: red;"></h3>
         </div>
     </div>
+
 <script>
+        // Appliance Wattages
+        const appliances = {
+            "Light Bulb (LED)": 20,
+            "Electric Fan (Standing or Ceiling)": 100,
+            "Television": 150,
+            "Decoder": 50,
+            "Sound System": 200,
+            "Laptop": 100,
+            "Desktop Computer": 300,
+            "Student Refrigerator": 400,
+            "Standing Refrigerator": 700,
+            "Deep Freezer": 800,
+            "Hair Clipper": 30,
+            "Electric Hair Dryer": 2000,
+            "Electric Sewing Machine": 500,
+            "Air Conditioner": 2000,
+            "Electric Iron": 1500,
+            "Microwave Oven": 1000,
+            "Washing Machine": 1000,
+            "Blender": 700,
+            "Electric Kettle": 1500,
+            "Water Heater": 2000,
+            "Pumping Machine": 2000
+        };
+
+        // Pricing Data
+        const pricing = {
+            inverters: [140000, 180000, 230000, 290000, 390000, 450000, 650000, 1200000, 1400000],
+            panels: { "250W": 70000, "350W": 100000 },
+            chargeControllers: [80000, 100000, 150000, 230000, 260000],
+            batteryRack: [30000, 40000, 60000, 100000, 120000, 130000, 170000, 220000, 300000],
+            cablesAccessories: [60000, 70000, 90000, 100000, 120000, 140000, 180000, 220000, 250000],
+            logisticsInstallation: [80000, 100000, 120000, 150000, 170000, 180000, 250000, 300000, 400000],
+            batteries: 300000
+        };
+
+        // Populate Form with Appliances
+        const formContainer = document.getElementById("form-container");
+        Object.keys(appliances).forEach((appliance, index) => {
+            formContainer.innerHTML += `
+                <div class="form-floating mt-3">
+                    <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
+                    <label for="appliance-${index}">${appliance}</label>
+                </div>`;
+        });
+        
+// Function to Submit Data to Google Sheets
+function submitToSheet(name, phone, location, totalPower, totalCost) {
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbyq5GJ32feSN4MOHZPmxoT9TIkCoMEMQOiZpeZlGkTDLuB-OaQDZ3znSsMAE5F8m9fE/exec"; // Replace with your deployed Apps Script URL
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("location", location);
+    formData.append("totalPower", totalPower);
+    formData.append("totalCost", totalCost);
+
+    fetch(scriptUrl, { method: "POST", body: formData })
+        .then(response => response.json())
+        .then(data => console.log(data.status === "success" ? "Data submitted successfully!" : "Error submitting data."))
+        .catch(() => console.log("There was an error submitting the data. Please try again."));
+}
+
+
+        // Calculate Total Power and Materials
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+            const name = document.getElementById("userName").value.trim();
+            const phone = document.getElementById("userPhone").value.trim();
+            const location = document.getElementById("userLocation").value.trim();
+
+            // Validate User Details
+            if (!name || !phone || !location) {
+                alert("Please fill out your Name, Phone Number, and Location to calculate.");
+                return;
+            }
+
+            // Validate phone number (must be a valid Nigerian number with exactly 11 digits)
+            const phoneRegex = /^(070|080|081|090|091|071|093|094|095|096|097|098|099)[0-9]{8}$/;
+            if (!phoneRegex.test(phone)) {
+                alert("Please enter a valid Nigerian phone number with 11 digits.");
+                return;
+            }
+
+            let isValid = true;
+            Object.keys(appliances).forEach((appliance, index) => {
+                const quantity = document.getElementById(`appliance-${index}`).value;
+                if (quantity && (isNaN(quantity) || quantity < 0)) {
+                    alert(`Please enter a valid number for ${appliance}.`);
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) return;
+
+            let totalPower = 0;
+            Object.values(appliances).forEach((watt, index) => {
+                const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
+                totalPower += watt * quantity;
+            });
+
+            // Determine Inverter Capacity and Costs
+            const inverterIndex = totalPower <= 1000 ? 0 : totalPower <= 1500 ? 1 : totalPower <= 2000 ? 2 :
+                totalPower <= 2500 ? 3 : totalPower <= 3000 ? 4 : totalPower <= 3500 ? 5 :
+                totalPower <= 5000 ? 6 : totalPower <= 7500 ? 7 : 8;
+            const inverterCapacity = ["1kVA", "1.5kVA", "2kVA", "2.5kVA", "3kVA", "3.5kVA", "5kVA", "7.5kVA", "10kVA"][inverterIndex];
+            const inverterCost = pricing.inverters[inverterIndex];
+
+            // Determine Batteries
+            const batteries = inverterIndex === 0 ? 1 : inverterIndex === 1 ? 2 : inverterIndex <= 3 ? 4 :
+                inverterIndex <= 5 ? 8 : inverterIndex <= 7 ? 12 : 16;
+            const batteryCost = batteries * pricing.batteries;
+
+            // Determine Panels
+            const panelType = inverterIndex <= 5 ? "250W" : "350W";
+            const panels = inverterIndex <= 5 ? batteries * 3 : batteries * 2;
+            const panelCost = panels * pricing.panels[panelType];
+
+            // Determine Charge Controller
+            const chargeControllerIndex = inverterIndex <= 1 ? 0 : inverterIndex <= 3 ? 1 :
+                inverterIndex <= 5 ? 2 : inverterIndex === 6 ? 3 : 4;
+            const chargeControllerCost = pricing.chargeControllers[chargeControllerIndex];
+
+            // Additional Costs
+            const batteryRackCost = pricing.batteryRack[inverterIndex];
+            const cablesAccessoriesCost = pricing.cablesAccessories[inverterIndex];
+            const logisticsInstallationCost = pricing.logisticsInstallation[inverterIndex];
+
+            // Total Cost
+            const totalCost = inverterCost + batteryCost + panelCost + chargeControllerCost +
+                batteryRackCost + cablesAccessoriesCost + logisticsInstallationCost;
+
+            // Display Results
+            document.getElementById("result").classList.remove("d-none");
+            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            document.getElementById("inverter").innerText = `Solar Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})`;
+            document.getElementById("batteries").innerText = `Tall Tubular Batteries: ${batteries} (₦${batteryCost.toLocaleString()})`;
+            document.getElementById("panels").innerText = `Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})`;
+            document.getElementById("chargeController").innerText = `MPPT Charge Controller: ₦${chargeControllerCost.toLocaleString()}`;
+            document.getElementById("batteryRack").innerText = `Battery Rack & Solar Rails: ₦${batteryRackCost.toLocaleString()}`;
+            document.getElementById("cablesAccessories").innerText = `Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}`;
+            document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
+            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+
+             
+             // Submit to Google Sheets
+    submitToSheet(name, phone, location, totalPower, totalCost);
+            
+            // WhatsApp Link
+            const whatsappNumber = "2348022987177"; 
+            const message = encodeURIComponent(`
+                Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:
+                - Total Power Requirement: ${totalPower}W
+                - Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})
+                - Batteries: ${batteries} (₦${batteryCost.toLocaleString()})
+                - Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})
+                - Charge Controller: ₦${chargeControllerCost.toLocaleString()}
+                - Battery Rack & Rails: ₦${batteryRackCost.toLocaleString()}
+                - Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}
+                - Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}
+                - Estimated Total Cost: ₦${totalCost.toLocaleString()}
+                I would like to discuss my specific needs.
+            `);
+
+            // Insert WhatsApp link into the result
+            document.getElementById("result").insertAdjacentHTML("beforeend", `
+                <div class="mt-3">
+                    <hr>
+                    <p><i>Want to learn more, have specific questions or discuss further?</i></p>
+                    <a href="https://wa.me/${whatsappNumber}?text=${message}" 
+                       class="btn btn-primary" target="_blank">
+                       Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            `);
+        });
+    </script>
+
+       
+<!-- <script>
+    
     // Appliance Wattages
     const appliances = {
         "Light Bulb (LED)": 20,
