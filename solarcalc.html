@@ -320,9 +320,9 @@ function submitToSheet(name, phone, location, totalPower, totalCost) {
         document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
 
         // Silently send data to Google Sheets
-  sendDataToSheet(name, phone, location, totalPower, totalCost);
-        
-    // Generate WhatsApp Link
+  submitToSheet(name, phone, location, totalPower, totalCost);
+            
+        // Generate WhatsApp Link
         const whatsappNumber = "2348022987177"; // Replace with the expert's WhatsApp number
         const message = encodeURIComponent(
             `Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:\n` +
@@ -336,7 +336,7 @@ function submitToSheet(name, phone, location, totalPower, totalCost) {
             `- Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}\n` +
             `- Estimated Total Cost: ₦${totalCost.toLocaleString()}\n\n` +
             `I would like to discuss my specific needs.`
-        );
+        `);
 
         // Insert WhatsApp Link after the results section
 document.getElementById("result").insertAdjacentHTML("beforeend", `
