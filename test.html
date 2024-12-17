@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Inverter System Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        h1, h5 {
+            color: #26d48c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Solar Inverter System Calculator</h1>
+
+        <!-- User Details Section -->
+        <h5>Fill in your Personal Details</h5>
+        <div id="user-details" class="mb-4">
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userName" placeholder="Name" required>
+                <label for="userName">Enter your Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="tel" class="form-control" id="userPhone" placeholder="Phone Number" required>
+                <label for="userPhone">Enter Phone Number</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userLocation" placeholder="Location" required>
+                <label for="userLocation">Enter Location (Town and State)</label>
+            </div>
+        </div>
+        
+        <!-- Appliance Input Section -->
+        <h5>Fill in your Appliances</h5>
+        <small><i>Enter the quantity of each appliance you want the solar system to power. Ignore those not available.</i></small>
+        <div id="form-container"></div>
+        
+        <!-- Calculate Button -->
+        <div class="d-flex justify-content-center">
+            <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 15px;">Calculate</button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result" class="mt-4 p-3 bg-light border rounded d-none">
+            <h4 style="color: green;">Below is your Estimated System Requirements and Costs:</h4>
+            <p id="totalPower" style="font-weight: bold;"></p>
+            <p id="inverter"></p>
+            <p id="batteries"></p>
+            <p id="panels"></p>
+            <p id="chargeController"></p>
+            <p id="batteryRack"></p>
+            <p id="cablesAccessories"></p>
+            <p id="logisticsInstallation"></p>
+            <h3 id="totalCost" style="color: red;"></h3>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Appliance Wattages
+        const appliances = {
+            "Light Bulb (LED)": 20,
+            "Electric Fan (Standing or Ceiling)": 100,
+            "Television": 150,
+            "Decoder": 50,
+            "Sound System": 200,
+            "Laptop": 100,
+            "Desktop Computer": 300,
+            "Student Refrigerator": 400,
+            "Standing Refrigerator": 700,
+            "Deep Freezer": 800,
+            "Hair Clipper": 30,
+            "Electric Hair Dryer": 2000,
+            "Electric Sewing Machine": 500,
+            "Air Conditioner": 2000,
+            "Electric Iron": 1500,
+            "Microwave Oven": 1000,
+            "Washing Machine": 1000,
+            "Blender": 700,
+            "Electric Kettle": 1500,
+            "Water Heater": 2000,
+            "Pumping Machine": 2000
+        };
+
+        // Pricing Data
+        const pricing = {
+            inverters: [140000, 180000, 230000, 290000, 390000, 450000, 650000, 1200000, 1400000],
+            panels: { "250W": 70000, "350W": 100000 },
+            chargeControllers: [80000, 100000, 150000, 230000, 260000],
+            batteryRack: [30000, 40000, 60000, 100000, 120000, 130000, 170000, 220000, 300000],
+            cablesAccessories: [60000, 70000, 90000, 100000, 120000, 140000, 180000, 220000, 250000],
+            logisticsInstallation: [80000, 100000, 120000, 150000, 170000, 180000, 250000, 300000, 400000],
+            batteries: 300000
+        };
+
+        // Populate Form with Appliances
+        const formContainer = document.getElementById("form-container");
+        Object.keys(appliances).forEach((appliance, index) => {
+            formContainer.innerHTML += `
+                <div class="form-floating mt-3">
+                    <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
+                    <label for="appliance-${index}">${appliance}</label>
+                </div>`;
+        });
+
+        // Function to Submit Data to Google Sheets
+        function submitToSheet(name, phone, location, totalPower, totalCost) {
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbyq5GJ32feSN4MOHZPmxoT9TIkCoMEMQOiZpeZlGkTDLuB-OaQDZ3znSsMAE5F8m9fE/exec"; // Replace with your deployed Apps Script URL
+
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("phone", phone);
+            formData.append("location", location);
+            formData.append("totalPower", totalPower);
+            formData.append("totalCost", totalCost);
+
+            fetch(scriptUrl, { method: "POST", body: formData })
+                .then(response => response.json())
+                .then(data => alert(data.status === "success" ? "Data submitted successfully!" : "Error submitting data."))
+                .catch(() => alert("There was an error submitting the data. Please try again."));
+        }
+
+        // Calculate Total Power and Costs
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+            const name = document.getElementById("userName").value.trim();
+            const phone = document.getElementById("userPhone").value.trim();
+            const location = document.getElementById("userLocation").value.trim();
+
+            if (!name || !phone || !location) return alert("Please fill out all details.");
+
+            let totalPower = 0;
+            Object.values(appliances).forEach((watt, index) => {
+                const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
+                totalPower += watt * quantity;
+            });
+
+          
+      
+            const totalCost = totalPower * 500; // Simplified cost calculation
+            document.getElementById("result").classList.remove("d-none");
+            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`; 
+
+            submitToSheet(name, phone, location, totalPower, totalCost);
+         });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
