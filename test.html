@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Inverter System Calculator</title>
-    <meta content="Latest News, Business, Technology, Sports, Education, Nigeria News, Global News" name="keywords">
+    <title>Solar Products Store</title>
+     <meta content="Latest News, Business, Technology, Sports, Education, Nigeria News, Global News" name="keywords">
     <meta content="Stay updated with the latest news on Business, Technology, Sports, Education, and more from Nigeria and around the globe at EL-Zion Global Network TV." name="description">
     <meta property="og:title" content="Solar Calculator: How much will it Cost you to Power your House? Find out!">
     <meta property="og:description"content="Find out Cost of Solar Inverter System for your energy need">
@@ -48,13 +48,12 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
-        h1, h5 {
-            color: #26d48c;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; }
+        input { padding: 8px; width: 300px; margin: 10px auto; display: block; }
+        .product { display: flex; justify-content: space-between; padding: 10px; border: 1px solid #ddd; margin: 10px; }
+        .product img { width: 80px; height: 80px; }
+        .cart-btn { background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -102,142 +101,92 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-    
     <div class="container mt-4">
-      <!-- <h1 class="text-center">Test Solar Inverter System Calculator</h1>
+    <h1>Solar Products Store</h1>
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <div id="productContainer"></div>
+    <h2>Shopping Cart</h2>
+    <ul id="cart"></ul>
 
-        <!-- User Details Section -->
-        <h5>Fill in your Personal Details</h5>
-        <div id="user-details" class="mb-4">
-            <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userName" placeholder="Name" required>
-                <label for="userName">Enter your Name</label>
-            </div>
-            <div class="form-floating mt-3">
-                <input type="tel" class="form-control" id="userPhone" placeholder="Phone Number" required>
-                <label for="userPhone">Enter Phone Number</label>
-            </div>
-            <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userLocation" placeholder="Location" required>
-                <label for="userLocation">Enter Location (Town and State)</label>
-            </div>
-        </div>
-        
-        <!-- Appliance Input Section -->
-        <h5>Fill in your Appliances</h5>
-        <small><i>Enter the quantity of each appliance you want the solar system to power. Ignore those not available.</i></small>
-        <div id="form-container"></div>
-        
-        <!-- Calculate Button -->
-        <div class="d-flex justify-content-center">
-            <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 15px;">Calculate</button>
-        </div>
-
-        <!-- Results Section -->
-        <div id="result" class="mt-4 p-3 bg-light border rounded d-none">
-            <h4 style="color: green;">Below is your Estimated System Requirements and Costs:</h4>
-            <p id="totalPower" style="font-weight: bold;"></p>
-            <p id="inverter"></p>
-            <p id="batteries"></p>
-            <p id="panels"></p>
-            <p id="chargeController"></p>
-            <p id="batteryRack"></p>
-            <p id="cablesAccessories"></p>
-            <p id="logisticsInstallation"></p>
-            <h3 id="totalCost" style="color: red;"></h3>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
     <script>
-        // Appliance Wattages
-        const appliances = {
-            "Light Bulb (LED)": 20,
-            "Electric Fan (Standing or Ceiling)": 100,
-            "Television": 150,
-            "Decoder": 50,
-            "Sound System": 200,
-            "Laptop": 100,
-            "Desktop Computer": 300,
-            "Student Refrigerator": 400,
-            "Standing Refrigerator": 700,
-            "Deep Freezer": 800,
-            "Hair Clipper": 30,
-            "Electric Hair Dryer": 2000,
-            "Electric Sewing Machine": 500,
-            "Air Conditioner": 2000,
-            "Electric Iron": 1500,
-            "Microwave Oven": 1000,
-            "Washing Machine": 1000,
-            "Blender": 700,
-            "Electric Kettle": 1500,
-            "Water Heater": 2000,
-            "Pumping Machine": 2000
-        };
+        const products = [
+            { id: 1, name: "1kVA Inverter", price: 140000 },
+            { id: 2, name: "1.5kVA Inverter", price: 180000 },
+            { id: 3, name: "2kVA Inverter", price: 230000 },
+            { id: 4, name: "2.5kVA Inverter", price: 290000 },
+            { id: 5, name: "3kVA Inverter", price: 390000 },
+            { id: 6, name: "3.5kVA Inverter", price: 450000 },
+            { id: 7, name: "5kVA Inverter", price: 650000 },
+            { id: 8, name: "7.5kVA Inverter", price: 1200000 },
+            { id: 9, name: "10kVA Inverter", price: 1400000 },
+            { id: 10, name: "100W Solar Panel", price: 37000 },
+            { id: 11, name: "180W Solar Panel", price: 48000 },
+            { id: 12, name: "200W Solar Panel", price: 50000 },
+            { id: 13, name: "250W Solar Panel", price: 70000 },
+            { id: 14, name: "280W Solar Panel", price: 75000 },
+            { id: 15, name: "300W Solar Panel", price: 80000 },
+            { id: 16, name: "330W Solar Panel", price: 90000 },
+            { id: 17, name: "350W Solar Panel", price: 100000 },
+            { id: 18, name: "450W Solar Panel", price: 120000 },
+            { id: 19, name: "480W Solar Panel", price: 115000 },
+            { id: 20, name: "550W Solar Panel", price: 130000 },
+            { id: 21, name: "MPPT Charge Controller 30A", price: 80000 },
+            { id: 22, name: "MPPT Charge Controller 40A", price: 100000 },
+            { id: 23, name: "MPPT Charge Controller 60A", price: 150000 },
+            { id: 24, name: "MPPT Charge Controller 80A", price: 230000 },
+            { id: 25, name: "MPPT Charge Controller 100A", price: 260000 },
+            { id: 26, name: "Solar Street Light 100W", price: 120000 },
+            { id: 27, name: "Solar Street Light 200W", price: 200000 },
+            { id: 28, name: "Solar Street Light 300W", price: 250000 }
+        ];
 
-        // Pricing Data
-        const pricing = {
-            inverters: [140000, 180000, 230000, 290000, 390000, 450000, 650000, 1200000, 1400000],
-            panels: { "250W": 70000, "350W": 100000 },
-            chargeControllers: [80000, 100000, 150000, 230000, 260000],
-            batteryRack: [30000, 40000, 60000, 100000, 120000, 130000, 170000, 220000, 300000],
-            cablesAccessories: [60000, 70000, 90000, 100000, 120000, 140000, 180000, 220000, 250000],
-            logisticsInstallation: [80000, 100000, 120000, 150000, 170000, 180000, 250000, 300000, 400000],
-            batteries: 300000
-        };
+        const cart = [];
+        const productContainer = document.getElementById("productContainer");
+        const searchInput = document.getElementById("searchInput");
 
-        // Populate Form with Appliances
-        const formContainer = document.getElementById("form-container");
-        Object.keys(appliances).forEach((appliance, index) => {
-            formContainer.innerHTML += `
-                <div class="form-floating mt-3">
-                    <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
-                    <label for="appliance-${index}">${appliance}</label>
-                </div>`;
-        });
-
-        // Function to Submit Data to Google Sheets
-        function submitToSheet(name, phone, location, totalPower, totalCost) {
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbyq5GJ32feSN4MOHZPmxoT9TIkCoMEMQOiZpeZlGkTDLuB-OaQDZ3znSsMAE5F8m9fE/exec"; // Replace with your deployed Apps Script URL
-
-            const formData = new FormData();
-            formData.append("name", name);
-            formData.append("phone", phone);
-            formData.append("location", location);
-            formData.append("totalPower", totalPower);
-            formData.append("totalCost", totalCost);
-
-            fetch(scriptUrl, { method: "POST", body: formData })
-                .then(response => response.json())
-                .then(data => alert(data.status === "success" ? "Data submitted successfully!" : "Error submitting data."))
-                .catch(() => alert("There was an error submitting the data. Please try again."));
+        // Render Products
+        function displayProducts(items) {
+            productContainer.innerHTML = "";
+            items.forEach(product => {
+                productContainer.innerHTML += `
+                    <div class="product">
+                        <div>
+                            <h3>${product.name}</h3>
+                            <p>Price: ₦${product.price.toLocaleString()}</p>
+                        </div>
+                        <button class="cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                `;
+            });
         }
 
-        // Calculate Total Power and Costs
-        document.getElementById("calculateBtn").addEventListener("click", () => {
-            const name = document.getElementById("userName").value.trim();
-            const phone = document.getElementById("userPhone").value.trim();
-            const location = document.getElementById("userLocation").value.trim();
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(item => item.id === productId);
+            cart.push(product);
+            renderCart();
+        }
 
-            if (!name || !phone || !location) return alert("Please fill out all details.");
-
-            let totalPower = 0;
-            Object.values(appliances).forEach((watt, index) => {
-                const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
-                totalPower += watt * quantity;
+        // Render Cart
+        function renderCart() {
+            const cartElement = document.getElementById("cart");
+            cartElement.innerHTML = "";
+            cart.forEach(item => {
+                cartElement.innerHTML += `<li>${item.name} - ₦${item.price.toLocaleString()}</li>`;
             });
+        }
 
-          
-      
-            const totalCost = totalPower * 500; // Simplified cost calculation
-            document.getElementById("result").classList.remove("d-none");
-            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
-            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`; 
+        // Search Functionality
+        searchInput.addEventListener("input", () => {
+            const searchValue = searchInput.value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchValue));
+            displayProducts(filteredProducts);
+        });
 
-            submitToSheet(name, phone, location, totalPower, totalCost);
-         });
-    </script>
+        // Initial Render
+        displayProducts(products);
+    </scrip>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
