@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Form Submission</title>
+    <title>Solar Inverter System Calculator</title>
     <style>
+        /* Your existing CSS styles can go here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -20,69 +21,107 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px;
-            text-align: center;
+            width: 90%;
+            max-width: 600px;
         }
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .form-floating {
+            margin-bottom: 20px;
         }
-        button {
-            background-color: #4CAF50;
+        .btn-primary {
+            background-color: #26d48c;
             color: white;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Submit Your Information</h2>
-        <form id="dataForm">
-            <!-- Name Field -->
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            <!-- Email Field -->
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            <!-- Submit Button -->
-            <button type="submit">Submit</button>
-        </form>
-        <p id="responseMessage" style="margin-top: 15px; font-size: 14px;"></p>
+        <h1 class="text-center" style="color: #26d48c;">Solar Inverter System Calculator</h1>
+
+        <!-- User Details Section -->
+        <h5>Fill in your Personal Details</h5>
+        <div id="user-details" class="mb-4">
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userName" placeholder="Enter your Name" required>
+                <label for="userName">Enter your Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="tel" class="form-control" id="userPhone" placeholder="Enter Phone Number" required>
+                <label for="userPhone">Enter Phone Number</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userLocation" placeholder="Enter Location (Town and City)" required>
+                <label for="userLocation">Enter Location (Town and State)</label>
+            </div>
+        </div>
+        
+        <!-- Appliance Input Section (auto-generated based on appliances) -->
+        <h5>Fill in your Appliances</h5>
+        <small><i>Enter the quantity of each of the appliances you have and will want the Solar system to power. Ignore those not available.</i></small>
+        <div id="form-container"></div>
+        
+        <!-- Calculate Button -->
+        <div style="display: flex; justify-content: center;">
+            <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 15px;">Calculate</button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result" class="mt-4 p-3 bg-light border rounded d-none">
+            <h4 style="color: green;">Below is your Estimated System Requirements and Costs:</h4>
+            <p id="totalPower" style="font-weight: bold;"></p>
+            <p id="totalCost" style="color: red;"></p>
+        </div>
     </div>
 
     <script>
-        // Form submission event
-        document.getElementById("dataForm").addEventListener("submit", function(event) {
-            event.preventDefault();  // Prevent default form submission
+        const appliances = {
+            "Light Bulb (LED)": 20,
+            "Electric Fan (Standing or Ceiling)": 100,
+            "Television": 150,
+            "Decoder": 50,
+            "Sound System": 200,
+            "Laptop": 100,
+            "Desktop Computer": 300,
+            "Student Refrigerator": 400,
+            "Standing Refrigerator": 700,
+            "Deep Freezer": 800,
+            "Hair Clipper": 30,
+            "Electric Hair Dryer": 2000,
+            "Electric Sewing Machine": 500,
+            "Air Conditioner": 2000,
+            "Electric Iron": 1500,
+            "Microwave Oven": 1000,
+            "Washing Machine": 1000,
+            "Blender": 700,
+            "Electric Kettle": 1500,
+            "Water Heater": 2000,
+            "Pumping Machine": 2000
+        };
 
-            // Get the form data
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
+        // Populate Form
+        const formContainer = document.getElementById("form-container");
+        Object.keys(appliances).forEach((appliance, index) => {
+            formContainer.innerHTML += `
+                <div class="form-floating mt-3">
+                    <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
+                    <label for="appliance-${index}">${appliance}</label>
+                </div>`;
+        });
 
-            // Validate the inputs
-            if (!name || !email) {
-                document.getElementById("responseMessage").textContent = "Please fill out both fields.";
-                return;
-            }
-
-            // URL of the Apps Script web app (replace this with your own URL)
-            const scriptUrl = "https://script.google.com/macros/s/AKfycbwJHmxKGWyajcTXV_lDp-z2lxq7Xo5nOMbkE6_D_JPe2WD1MHomQeJmgIiY9PyvF0NH1Q/exec";  // Replace with your Apps Script URL
-
-            // Prepare the data to send
+        // Function to send data to Google Sheets via Apps Script
+        function sendDataToSheet(name, phone, location, totalPower, totalCost) {
+            const scriptUrl = "https://script.google.com/macros/s/AKfycbwLggtjlusJJ43TrcgvLZKvfTKOjfgMjjICOsvvTBEnI6idbD2ym7WQz3yHpMBdjlJ0/exec";  // Replace with your Apps Script Web App URL
+            
             const formData = new FormData();
             formData.append("name", name);
-            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("location", location);
+            formData.append("totalPower", totalPower);
+            formData.append("totalCost", totalCost);
 
-            // Send the data using Fetch API (POST request)
             fetch(scriptUrl, {
                 method: "POST",
                 body: formData
@@ -90,16 +129,38 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    document.getElementById("responseMessage").textContent = "Thank you! Your information has been submitted.";
-                    document.getElementById("dataForm").reset();  // Reset the form
-                } else {
-                    document.getElementById("responseMessage").textContent = "There was an error. Please try again.";
+                    console.log("Data submitted successfully.");
                 }
             })
             .catch(error => {
-                document.getElementById("responseMessage").textContent = "There was an error. Please try again.";
-                console.error('Error:', error);
+                console.error('Error submitting data:', error);
             });
+        }
+
+        // Calculate Total Power and Cost
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+            const name = document.getElementById("userName").value.trim();
+            const phone = document.getElementById("userPhone").value.trim();
+            const location = document.getElementById("userLocation").value.trim();
+
+            if (!name || !phone || !location) {
+                alert("Please fill out your Name, Phone Number, and Location.");
+                return;
+            }
+
+            let totalPower = 0;
+            Object.values(appliances).forEach((watt, index) => {
+                const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
+                totalPower += watt * quantity;
+            });
+
+            const totalCost = totalPower * 10; // A simple cost estimate (example)
+
+            document.getElementById("result").classList.remove("d-none");
+            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+
+            sendDataToSheet(name, phone, location, totalPower, totalCost);
         });
     </script>
 
