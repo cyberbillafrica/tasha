@@ -144,23 +144,11 @@
             });
 
           
-        // Display Results
-        document.getElementById("result").classList.remove("d-none");
-        document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
-        document.getElementById("inverter").innerText = `Solar Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})`;
-        document.getElementById("batteries").innerText = `Tall Tubular Batteries: ${batteries} (₦${batteryCost.toLocaleString()})`;
-        document.getElementById("panels").innerText = `Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})`;
-        document.getElementById("chargeController").innerText = `MPPT Charge Controller: ₦${chargeControllerCost.toLocaleString()}`;
-        document.getElementById("batteryRack").innerText = `Battery Rack & Solar Rails: ₦${batteryRackCost.toLocaleString()}`;
-        document.getElementById("cablesAccessories").innerText = `Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}`;
-        document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
-        document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
-
-    
-            //const totalCost = totalPower * 500; // Simplified cost calculation
-            //document.getElementById("result").classList.remove("d-none");
-            //document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
-            //document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`; 
+      
+            const totalCost = totalPower * 500; // Simplified cost calculation
+            document.getElementById("result").classList.remove("d-none");
+            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`; 
 
             submitToSheet(name, phone, location, totalPower, totalCost);
        
