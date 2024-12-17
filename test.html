@@ -143,12 +143,54 @@
                 totalPower += watt * quantity;
             });
 
-            const totalCost = totalPower * 500; // Simplified cost calculation
-            document.getElementById("result").classList.remove("d-none");
-            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
-            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+          
+        // Display Results
+        document.getElementById("result").classList.remove("d-none");
+        document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+        document.getElementById("inverter").innerText = `Solar Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})`;
+        document.getElementById("batteries").innerText = `Tall Tubular Batteries: ${batteries} (₦${batteryCost.toLocaleString()})`;
+        document.getElementById("panels").innerText = `Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})`;
+        document.getElementById("chargeController").innerText = `MPPT Charge Controller: ₦${chargeControllerCost.toLocaleString()}`;
+        document.getElementById("batteryRack").innerText = `Battery Rack & Solar Rails: ₦${batteryRackCost.toLocaleString()}`;
+        document.getElementById("cablesAccessories").innerText = `Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}`;
+        document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
+        document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+
+    
+            //const totalCost = totalPower * 500; // Simplified cost calculation
+            //document.getElementById("result").classList.remove("d-none");
+            //document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            //document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`; 
 
             submitToSheet(name, phone, location, totalPower, totalCost);
+       
+         // Generate WhatsApp Link
+        const whatsappNumber = "2348022987177"; // Replace with the expert's WhatsApp number
+        const message = encodeURIComponent(
+            `Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:\n` +
+            `- Total Power Requirement: ${totalPower}W\n` +
+            `- Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})\n` +
+            `- Batteries: ${batteries} (₦${batteryCost.toLocaleString()})\n` +
+            `- Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})\n` +
+            `- Charge Controller: ₦${chargeControllerCost.toLocaleString()}\n` +
+            `- Battery Rack & Rails: ₦${batteryRackCost.toLocaleString()}\n` +
+            `- Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}\n` +
+            `- Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}\n` +
+            `- Estimated Total Cost: ₦${totalCost.toLocaleString()}\n\n` +
+            `I would like to discuss my specific needs.`
+        );
+
+        // Insert WhatsApp Link after the results section
+document.getElementById("result").insertAdjacentHTML("beforeend", `
+  <div class="mt-3">
+    <hr>
+    <p><i>Want to learn more, have specific questions or discuss further?</i></p>
+    <a href="https://wa.me/${whatsappNumber}?text=${message}" 
+       class="btn btn-primary" 
+       target="_blank">
+       Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
+    </a>
+  </div>
         });
     </script>
 
