@@ -8,8 +8,14 @@
         body { font-family: Arial, sans-serif; margin: 20px; }
         h1 { text-align: center; }
         input { padding: 8px; width: 300px; margin: 10px auto; display: block; }
-        .product { display: flex; justify-content: space-between; padding: 10px; border: 1px solid #ddd; margin: 10px; align-items: center; }
-        .product img { width: 80px; height: 80px; margin-right: 10px; }
+        .product { border: 1px solid #ddd; margin: 10px; padding: 10px; display: flex; flex-direction: column; }
+        .product-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .product img { width: 150px; height: 150px; margin-right: 20px; }
+        .product-details { flex: 1; }
+        .product-name { font-size: 1.2em; margin: 0; }
+        .product-description { font-size: 0.9em; color: #555; margin: 5px 0; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-size: 1em; font-weight: bold; }
         .cart-btn { background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer; }
         .cart-btn:disabled { background-color: gray; cursor: not-allowed; }
         #cart-container { margin-top: 20px; }
