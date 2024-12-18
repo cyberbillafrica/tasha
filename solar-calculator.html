@@ -134,6 +134,38 @@
     
     <div class="container">
         <h1 class="text-center" style="color: #26d48c;">Solar Inverter System Calculator</h1>
+ 
+	<!-- Share News Start-->
+<hr
+<h6 class="mt-4 mb-3 text-dark text-uppercase font-weight-bold">Share Calculator</h6>
+<div class="d-flex justify-content-start">
+    <a class="btn btn-lg btn-danger btn-lg-square me-3" id="twitter-share" target="_blank">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a class="btn btn-lg btn-info btn-lg-square me-3" id="facebook-share" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="btn btn-lg btn-success btn-lg-square" id="whatsapp-share" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+<hr>
+<script>
+    // Get the current page URL
+    const pageUrl = encodeURIComponent(window.location.href);
+
+    // Update share links dynamically
+     document.getElementById("twitter-share").href = 
+    `https://twitter.com/intent/tweet?url=${pageUrl}&text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System`;
+
+     document.getElementById("facebook-share").href = 
+    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+     document.getElementById("whatsapp-share").href = 
+    `https://api.whatsapp.com/send?text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System:%20${pageUrl}`;
+</script>
+<!-- Share News End-->
+        
         <!-- User Details Section -->
         <h5>Fill in your Personal Details</h5><div id="user-details" class="mb-4">
             <div class="form-floating mt-3">
