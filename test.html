@@ -24,6 +24,7 @@
         #account-details { display: none; border: 1px solid #ddd; padding: 20px; margin-top: 10px; background-color: #f9f9f9; }
         .qty-btn { background-color: #26d48c; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin: 0 5px; }
         .remove-btn { background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        #payment-btn { background-color: #25d366; color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -205,7 +206,7 @@
             const totalPrice = totalPriceElement.textContent.split(": ")[1];
             const message = `Hello, I have made a payment for the following items:\n\n${cartDetails}\n\nTotal: ${totalPrice}`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/2349012345678?text=${encodedMessage}`, "_blank");
+            window.open(`https://wa.me/2348022987177?text=${encodedMessage}`, "_blank");
         });
 
         displayProducts(products);
