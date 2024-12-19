@@ -22,6 +22,8 @@
         #total-price { font-weight: bold; }
         #checkout-btn { background-color: #26d48c; color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; margin-top: 10px; }
         #account-details { display: none; border: 1px solid #ddd; padding: 20px; margin-top: 10px; background-color: #f9f9f9; }
+        .qty-btn { background-color: #26d48c; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin: 0 5px; }
+        .remove-btn { background-color: #f44336; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -37,11 +39,12 @@
             <p><strong>Account Number:</strong> 1234567890</p>
             <p><strong>Account Name:</strong> Tasha Solar</p>
             <p><strong>Bank:</strong> Moniepoint</p>
+            <button id="payment-btn">I Have Made Payment</button>
         </div>
     </div>
 
     <script>
-    const products = [
+        const products = [
     { id: 1, name: "1kVA Inverter", description: "A reliable inverter for small homes.", price: 140000, img: "img/tasha-1kva.jpeg" },
     { id: 2, name: "1.5kVA Inverter", description: "Great for powering appliances.", price: 180000, img: "img/tasha-1kva.jpeg" },
     { id: 3, name: "2kVA Inverter", description: "Suitable for medium-sized homes.", price: 230000, img: "img/tasha-2kva.jpeg" },
@@ -73,6 +76,7 @@
 ];
 
 
+
         const cart = new Map();
         const productContainer = document.getElementById("productContainer");
         const searchInput = document.getElementById("searchInput");
@@ -80,6 +84,7 @@
         const totalPriceElement = document.getElementById("total-price");
         const checkoutBtn = document.getElementById("checkout-btn");
         const accountDetails = document.getElementById("account-details");
+        const paymentBtn = document.getElementById("payment-btn");
 
         function displayProducts(items) {
             productContainer.innerHTML = "";
@@ -87,7 +92,6 @@
                 const productDiv = document.createElement("div");
                 productDiv.className = "product";
 
-                // Header section (image, name, description)
                 const productHeader = document.createElement("div");
                 productHeader.className = "product-header";
 
@@ -109,7 +113,6 @@
                 productDetails.append(productName, productDescription);
                 productHeader.append(img, productDetails);
 
-                // Footer section (price and Add to Cart button)
                 const productFooter = document.createElement("div");
                 productFooter.className = "product-footer";
 
@@ -131,7 +134,11 @@
         }
 
         function addToCart(product) {
-            if (!cart.has(product.id)) {
+            if (cart.has(product.id)) {
+                const existingItem = cart.get(product.id);
+                existingItem.quantity += 1;
+                cart.set(product.id, existingItem);
+            } else {
                 cart.set(product.id, { ...product, quantity: 1 });
             }
             renderCart();
@@ -144,19 +151,35 @@
 
             cart.forEach(item => {
                 const cartItem = document.createElement("li");
-                cartItem.textContent = `${item.name} - ₦${item.price.toLocaleString()} (Qty: ${item.quantity})`;
 
-                const removeBtn = document.createElement("button");
-                removeBtn.textContent = "Remove";
-                removeBtn.style.marginLeft = "10px";
-                removeBtn.onclick = () => removeFromCart(item.id);
+                cartItem.innerHTML = `
+                    ${item.name} - ₦${(item.price * item.quantity).toLocaleString()} 
+                    (Qty: ${item.quantity})
+                    <button class="qty-btn" onclick="adjustQuantity(${item.id}, 'decrease')">-</button>
+                    <button class="qty-btn" onclick="adjustQuantity(${item.id}, 'increase')">+</button>
+                    <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+                `;
 
-                cartItem.appendChild(removeBtn);
                 cartElement.appendChild(cartItem);
                 totalPrice += item.price * item.quantity;
             });
 
             totalPriceElement.textContent = `Total: ₦${totalPrice.toLocaleString()}`;
+        }
+
+        function adjustQuantity(productId, action) {
+            const item = cart.get(productId);
+
+            if (action === "increase") {
+                item.quantity += 1;
+            } else if (action === "decrease" && item.quantity > 1) {
+                item.quantity -= 1;
+            } else if (action === "decrease" && item.quantity === 1) {
+                cart.delete(productId);
+            }
+
+            cart.set(productId, item);
+            renderCart();
         }
 
         function removeFromCart(productId) {
@@ -171,13 +194,21 @@
             displayProducts(filteredProducts);
         });
 
-        // Show account details on checkout
         checkoutBtn.addEventListener("click", () => {
             accountDetails.style.display = "block";
+        });
+
+        paymentBtn.addEventListener("click", () => {
+            const cartDetails = Array.from(cart.values())
+                .map(item => `${item.name} (Qty: ${item.quantity}) - ₦${(item.price * item.quantity).toLocaleString()}`)
+                .join("\n");
+            const totalPrice = totalPriceElement.textContent.split(": ")[1];
+            const message = `Hello, I have made a payment for the following items:\n\n${cartDetails}\n\nTotal: ${totalPrice}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/2349012345678?text=${encodedMessage}`, "_blank");
         });
 
         displayProducts(products);
     </script>
 </body>
 </html>
- 
