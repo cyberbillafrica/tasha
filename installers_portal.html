@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installers Portal</title>
+    <meta content="Solar inverter systems, renewable energy, solar panels, clean energy solutions" name="keywords">
+    <meta content="Tasha Solar provides cutting-edge solar inverter systems and renewable energy solutions to power your home and business efficiently." name="description">
+    <meta property="og:title" content="Solar Calculator: How much will it Cost you to Power your House? Find out!">
+    <meta property="og:description"content="Find out Cost of Solar Inverter System for your energy need">
+    <meta property="og:image" content="https://cyberbillafrica.github.io/artisanshub/img/solar-calc.jpeg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://cyberbillafrica.github.io/artisanshub/solar.html" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Solar Calculator: How much will it Cost you to Power your House? Find out!" />
+    <meta name="twitter:description" content="Calculate Your Solar Power System Requirement and Cost" />
+    <meta name="twitter:image" content="https://cyberbillafrica.github.io/artisanshub/img/solar-calc.jpeg" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+   <!-- Favicon -->
+    <link href="img/tasha-logo.jpeg" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet --
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+            <h2 class="m-0 text-white">Tasha Solar</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="solar-store.html" class="nav-item nav-link">Solar Store</a>
+                <a href="solar-calculator.html" class="nav-item nav-link" style="font-weight: bold; color: #26d48c;">Solar Calculator</a>
+                <a href="installers_portal.html" class="nav-item nav-link" style="font-weight: bold; color: #26d48c;">Installers Portal</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="index.html/#quote" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+<!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-3 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <h3 class="display-3 text-white animated slideInRight">Installers Registration Portal</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb animated slideInRight mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="contact.html">Contact</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Register</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Share News Start-->
+<hr
+<h6 class="mt-4 mb-3 text-dark text-uppercase font-weight-bold">Share Portal with other Installers</h6>
+<div class="d-flex justify-content-start">
+    <a class="btn btn-lg btn-danger btn-lg-square me-3" id="twitter-share" target="_blank">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a class="btn btn-lg btn-info btn-lg-square me-3" id="facebook-share" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="btn btn-lg btn-success btn-lg-square" id="whatsapp-share" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+<hr>
+<script>
+    // Get the current page URL
+    const pageUrl = encodeURIComponent(window.location.href);
+
+    // Update share links dynamically
+     document.getElementById("twitter-share").href = 
+    `https://twitter.com/intent/tweet?url=${pageUrl}&text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System`;
+
+     document.getElementById("facebook-share").href = 
+    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+     document.getElementById("whatsapp-share").href = 
+    `https://api.whatsapp.com/send?text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System:%20${pageUrl}`;
+</script>
+<!-- Share News End-->
+        
+        <!-- User Details Section -->
+        <h5>Fill in your Personal Details</h5><div id="user-details" class="mb-4">
+            
+
+
+
+
+    <div class="container mt-5">
+        <h1 class="text-center text-primary">Solar Installers Portal</h1>
+                        
+<!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container text-center">
+            <p class="mb-2">Copyright &copy; <a class="fw-semi-bold" href="index.html">Tasha Energy</a>, All Right Reserved.</p>
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <p class="mb-0">Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">CyberBill Africa</a></p>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
