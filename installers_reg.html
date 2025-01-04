@@ -221,9 +221,14 @@
 </select>
      <label for="userOrigin">State of Origin</label>
             </div>
-
+            
+<div class="form-floating mt-3">
+    <textarea class="form-control" id="userLocation" name="location" placeholder="Enter your Village, Hometown, and LGA" required style="height: 100px;"></textarea>
+    <label for="userLocation">Village, Hometown, and LGA</label>
+</div>
+            
             <!-- State of Residence -->
-            <div class="form-floating mt-3">
+    <div class="form-floating mt-3">
   <select class="form-select" id="userResidence" name="stateOfResidence" required>
 <option value="" disabled selected>Select your State of Residence</option>
 <option value="Abia">Abia</option>
@@ -267,30 +272,64 @@
                 <label for="userResidence">State of Residence</label>
             </div>
 
-            <!-- State(s) of Completed Projects -->
-            <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userState" name="state" placeholder="Enter State(s) of Completed Projects" required>
-                <label for="userState">State(s) of Completed Projects</label>
-            </div>
-
             <!-- Business/Company Name (Optional) -->
             <div class="form-floating mt-3">
                 <input type="text" class="form-control" id="userBusiness" name="business" placeholder="Enter your Business/Company Name">
                 <label for="userBusiness">Business/Company Name (Optional)</label>
             </div>
 
-            <!-- Brief Info About Yourself -->
-            <div class="form-floating mt-3">
-                <textarea class="form-control" id="userAbout" name="about" placeholder="Brief Info About Yourself" style="height: 100px;"></textarea>
-                <label for="userAbout">Brief Info About Yourself</label>
-            </div>
+            
+<div class="form-floating mt-3">
+    <textarea class="form-control" id="userAbout" name="about" placeholder="Brief Info About how you became a solar installer" style="height: 100px;"></textarea>
+    <label for="userAbout">Brief Info About how you became a solar installer</label>
+    <p>Characters remaining: <span id="charCount">250</span></p>
+</div>
 
-            <!-- Description of Major Completed Projects -->
-            <div class="form-floating mt-3">
-                <textarea class="form-control" id="userProjects" name="projects" placeholder="Describe Major Completed Projects" style="height: 100px;" required></textarea>
-                <label for="userProjects">Description of Major Completed Projects</label>
-            </div>
+<script>
+const textarea = document.getElementById('userAbout');
+const charCount = document.getElementById('charCount');
+const maxChars = 250;
 
+textarea.addEventListener('input', () => {
+    const currentLength = textarea.value.length;
+    const remainingChars = maxChars - currentLength;
+    charCount.textContent = remainingChars;
+
+    if (remainingChars < 0) {
+        charCount.style.color = 'red'; // Optionally change color when limit is exceeded
+        textarea.value = textarea.value.substring(0, maxChars); // Truncate excess input
+        charCount.textContent = 0; // Display 0 when limit is exceeded
+    } else {
+        charCount.style.color = 'black'; // Reset color
+    }
+});
+</script>
+            
+<div class="form-floating mt-3">
+    <textarea class="form-control" id="userProjects" name="projects" placeholder="Describe your Last Completed Project" style="height: 100px;" required></textarea>
+    <label for="userProjects">Description of your Last Completed Project</label>
+    <p>Characters remaining: <span id="charCount">250</span></p>
+</div>
+
+<script>
+const textarea = document.getElementById('userProjects');
+const charCount = document.getElementById('charCount');
+const maxChars = 250;
+
+textarea.addEventListener('input', () => {
+    const currentLength = textarea.value.length;
+    const remainingChars = maxChars - currentLength;
+    charCount.textContent = remainingChars;
+
+    if (remainingChars < 0) {
+        charCount.style.color = 'red';
+        textarea.value = textarea.value.substring(0, maxChars);
+        charCount.textContent = 0;
+    } else {
+        charCount.style.color = 'black';
+    }
+});
+</script>
             <!-- Willingness to Work in Other States -->
             <div class="form-floating mt-3">
                 <select class="form-select" id="userAvailability" name="availability" required>
