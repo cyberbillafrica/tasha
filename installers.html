@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Installer Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Solar Installer Registration</h1>
+        <form id="registrationForm" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="post">
+            
+            <!-- Full Name -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userName" name="name" placeholder="Enter your Name" required>
+                <label for="userName">Enter your Name</label>
+            </div>
+            
+            <!-- Phone Number -->
+            <div class="form-floating mt-3">
+                <input type="tel" class="form-control" id="userPhone" name="phone" placeholder="Enter your Phone Number" required>
+                <label for="userPhone">Enter your Phone Number</label>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-floating mt-3">
+                <input type="email" class="form-control" id="userEmail" name="email" placeholder="Enter your Email" required>
+                <label for="userEmail">Enter your Email</label>
+            </div>
+
+            <!-- Home Address -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userAddress" name="address" placeholder="Enter your Home Address" required>
+                <label for="userAddress">Home Address</label>
+            </div>
+
+            <!-- Years of Experience -->
+            <div class="form-floating mt-3">
+                <input type="number" class="form-control" id="userExperience" name="experience" placeholder="Enter your Years of Experience" required>
+                <label for="userExperience">Years of Experience in Solar Installation</label>
+            </div>
+
+            <!-- Highest Education Qualification -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userEducation" name="education" placeholder="Enter your Highest Qualification" required>
+                <label for="userEducation">Highest Education Qualification</label>
+            </div>
+
+            <!-- State of Origin -->
+            <div class="form-floating mt-3">
+                <select class="form-select" id="userOrigin" name="stateOfOrigin" required>
+                    <option value="" disabled selected>Select your State of Origin</option>
+                    <!-- Add all Nigerian states -->
+                    <option value="Abia">Abia</option>
+                    <option value="Adamawa">Adamawa</option>
+                    <option value="Akwa Ibom">Akwa Ibom</option>
+                    <option value="Anambra">Anambra</option>
+                    <!-- Add the remaining states here -->
+                </select>
+                <label for="userOrigin">State of Origin</label>
+            </div>
+
+            <!-- State of Residence -->
+            <div class="form-floating mt-3">
+                <select class="form-select" id="userResidence" name="stateOfResidence" required>
+                    <option value="" disabled selected>Select your State of Residence</option>
+                    <!-- Add all Nigerian states -->
+                    <option value="Abia">Abia</option>
+                    <option value="Adamawa">Adamawa</option>
+                    <option value="Akwa Ibom">Akwa Ibom</option>
+                    <option value="Anambra">Anambra</option>
+                    <!-- Add the remaining states here -->
+                </select>
+                <label for="userResidence">State of Residence</label>
+            </div>
+
+            <!-- State(s) of Completed Projects -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userState" name="state" placeholder="Enter State(s) of Completed Projects" required>
+                <label for="userState">State(s) of Completed Projects</label>
+            </div>
+
+            <!-- Business/Company Name (Optional) -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userBusiness" name="business" placeholder="Enter your Business/Company Name">
+                <label for="userBusiness">Business/Company Name (Optional)</label>
+            </div>
+
+            <!-- Brief Info About Yourself -->
+            <div class="form-floating mt-3">
+                <textarea class="form-control" id="userAbout" name="about" placeholder="Brief Info About Yourself" style="height: 100px;"></textarea>
+                <label for="userAbout">Brief Info About Yourself</label>
+            </div>
+
+            <!-- Description of Major Completed Projects -->
+            <div class="form-floating mt-3">
+                <textarea class="form-control" id="userProjects" name="projects" placeholder="Describe Major Completed Projects" style="height: 100px;" required></textarea>
+                <label for="userProjects">Description of Major Completed Projects</label>
+            </div>
+
+            <!-- Willingness to Work in Other States -->
+            <div class="form-floating mt-3">
+                <select class="form-select" id="userAvailability" name="availability" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="userAvailability">Willingness to Work in Other States</label>
+            </div>
+
+            <!-- Preferred Locations for Work -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userPreferred" name="preferredLocations" placeholder="Enter Preferred Locations">
+                <label for="userPreferred">Preferred Locations for Work</label>
+            </div>
+
+            <!-- Declaration -->
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="userAuthenticity" name="authenticity" required>
+                <label class="form-check-label" for="userAuthenticity">
+                    I confirm all information provided is accurate.
+                </label>
+            </div>
+
+            <!-- Google Form Link -->
+            <div class="mt-4">
+                <p><b>Step 2: Upload Images of Completed Projects</b></p>
+                <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="btn btn-primary">Click here to upload images</a>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success w-100">Submit Registration</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
