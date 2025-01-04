@@ -153,11 +153,6 @@
     <label for="userGender">Gender</label>
             </div>
 
-            <!-- Home Address -->
-            <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userAddress" name="address" placeholder="Enter your Home Address" required>
-                <label for="userAddress">Residential Address</label>
-            </div>
 
             <!-- Years of Experience -->
             <div class="form-floating mt-3">
@@ -272,6 +267,12 @@
                 <label for="userResidence">State of Residence</label>
             </div>
 
+        <!-- Home Address -->
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userAddress" name="address" placeholder="Enter your Home Address" required>
+                <label for="userAddress">Residential Address</label>
+            </div>
+            
             <!-- Business/Company Name (Optional) -->
             <div class="form-floating mt-3">
                 <input type="text" class="form-control" id="userBusiness" name="business" placeholder="Enter your Business/Company Name">
@@ -281,7 +282,7 @@
             
 <div class="form-floating mt-3">
     <textarea class="form-control" id="userAbout" name="about" placeholder="Brief Info About how you became a solar installer" style="height: 100px;"></textarea>
-    <label for="userAbout">Brief Info About how you became a solar installer</label>
+    <label for="userAbout">Tell us how you became a solar installer</label>
     <p>Characters remaining: <span id="charCount">250</span></p>
 </div>
 
@@ -307,7 +308,7 @@ textarea.addEventListener('input', () => {
             
 <div class="form-floating mt-3">
     <textarea class="form-control" id="userProjects" name="projects" placeholder="Describe your Last Completed Project" style="height: 100px;" required></textarea>
-    <label for="userProjects">Description of your Last Completed Project</label>
+    <label for="userProjects">Describe your Last Project</label>
     <p>Characters remaining: <span id="charCount">250</span></p>
 </div>
 
@@ -337,11 +338,12 @@ textarea.addEventListener('input', () => {
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
-                <label for="userAvailability">Willingness to Work in Other States</label>
+                <label for="userAvailability">Are you willing to Work outside your States</label>
             </div>
 
             <!-- Preferred Locations for Work -->
             <div class="form-floating mt-3">
+                <class>Tell us other states or cities you can go to execute an installation at no extra cost</class>
                 <input type="text" class="form-control" id="userPreferred" name="preferredLocations" placeholder="Enter Preferred Locations">
                 <label for="userPreferred">Preferred Locations for Work</label>
             </div>
@@ -350,13 +352,13 @@ textarea.addEventListener('input', () => {
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" id="userAuthenticity" name="authenticity" required>
                 <label class="form-check-label" for="userAuthenticity">
-                    I confirm all information provided is accurate.
+                    I confirm all information provided is accurate and I have read and agreed to the Terms and Conditions. 
                 </label>
             </div>
 
             <!-- Google Form Link -->
-            <div class="mt-4">
-                <p><b>Step 2: Upload Images of Completed Projects</b></p>
+            <div class="mt-4 ">
+                <p><b>Step 2: Upload Images For Verification</b></p>
                 <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="btn btn-primary">Click here to upload images</a>
             </div>
 
