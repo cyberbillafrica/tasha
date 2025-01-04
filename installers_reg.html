@@ -87,7 +87,8 @@
     <!-- Page Header End -->
 
     <!-- Share News Start-->
-<hr
+<div class="container">
+    <hr
 <h6 class="mt-4 mb-3 text-dark text-uppercase font-weight-bold">Share Portal with other Installers</h6>
 <div class="d-flex justify-content-start">
     <a class="btn btn-lg btn-danger btn-lg-square me-3" id="twitter-share" target="_blank">
@@ -101,6 +102,7 @@
     </a>
 </div>
 <hr>
+    
 <script>
     // Get the current page URL
     const pageUrl = encodeURIComponent(window.location.href);
@@ -115,23 +117,20 @@
      document.getElementById("whatsapp-share").href = 
     `https://api.whatsapp.com/send?text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System:%20${pageUrl}`;
 </script>
+</div>
 <!-- Share News End-->
         
         <!-- User Details Section -->
-        <h5>Fill in your Personal Details</h5><div id="user-details" class="mb-4">
-            
-
-
-
+        
 
     <div class="container mt-5">
-        <h1 class="text-center">Solar Installer Registration</h1>
+        <h3 class="text-center text-primary">Installer Registration</h3>
         <form id="registrationForm" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="post">
             
             <!-- Full Name -->
             <div class="form-floating mt-3">
                 <input type="text" class="form-control" id="userName" name="name" placeholder="Enter your Name" required>
-                <label for="userName">Enter your Name</label>
+                <label for="userName">Enter your full Name</label>
             </div>
             
             <!-- Phone Number -->
@@ -149,7 +148,7 @@
             <!-- Home Address -->
             <div class="form-floating mt-3">
                 <input type="text" class="form-control" id="userAddress" name="address" placeholder="Enter your Home Address" required>
-                <label for="userAddress">Home Address</label>
+                <label for="userAddress">Residential Address</label>
             </div>
 
             <!-- Years of Experience -->
@@ -158,12 +157,18 @@
                 <label for="userExperience">Years of Experience in Solar Installation</label>
             </div>
 
-            <!-- Highest Education Qualification -->
             <div class="form-floating mt-3">
-                <input type="text" class="form-control" id="userEducation" name="education" placeholder="Enter your Highest Qualification" required>
-                <label for="userEducation">Highest Education Qualification</label>
-            </div>
-
+    <select class="form-select" id="userEducation" name="education" required>
+        <option value="" disabled selected>Select your Highest Qualification</option>
+        <option value="No Formal Education">No Formal Education</option>
+        <option value="Primary School">Primary School</option>
+        <option value="Secondary School">Secondary School</option>
+        <option value="OND">OND</option>
+        <option value="HND">HND</option>
+        <option value="Degree">Degree</option>
+    </select>
+    <label for="userEducation">Highest Education Qualification</label>
+    </div>
             <!-- State of Origin -->
             <div class="form-floating mt-3">
                 <select class="form-select" id="userOrigin" name="stateOfOrigin" required>
