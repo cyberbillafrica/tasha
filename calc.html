@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Inverter System Calculator</title>
+    <meta content="Solar inverter systems, renewable energy, solar panels, clean energy solutions" name="keywords">
+    <meta content="Tasha Solar provides cutting-edge solar inverter systems and renewable energy solutions to power your home and business efficiently." name="description">
+    <meta property="og:title" content="Solar Calculator: How much will it Cost you to Power your House? Find out!">
+    <meta property="og:description"content="Find out Cost of Solar Inverter System for your energy need">
+    <meta property="og:image" content="https://cyberbillafrica.github.io/artisanshub/img/solar-calc.jpeg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://cyberbillafrica.github.io/artisanshub/solar.html" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Solar Calculator: How much will it Cost you to Power your House? Find out!" />
+    <meta name="twitter:description" content="Calculate Your Solar Power System Requirement and Cost" />
+    <meta name="twitter:image" content="https://cyberbillafrica.github.io/artisanshub/img/solar-calc.jpeg" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+   <!-- Favicon -->
+    <link href="img/tasha-logo.jpeg" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet --
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start --
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark p-0">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>123 Street, New York, USA</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <small class="fa fa-phone-alt text-primary me-2"></small>
+                    <small>+012 345 6789</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center mx-n2">
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+            <h2 class="m-0 text-white">Tasha Solar</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="solar-store.html" class="nav-item nav-link">Solar Store</a>
+                <a href="solar-calculator.html" class="nav-item nav-link" style="font-weight: bold; color: #26d48c;">Solar Calculator</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="index.html/#quote" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+<!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-3 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <h3 class="display-3 text-white animated slideInRight">Solar Energy Power Calculator</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb animated slideInRight mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="contact.html">Contact</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Calculator</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+    
+    <div class="container">
+        <h1 class="text-center" style="color: #26d48c;">Solar Inverter System Calculator</h1>
+ 
+	<!-- Share News Start-->
+<hr
+<h6 class="mt-4 mb-3 text-dark text-uppercase font-weight-bold">Share Calculator</h6>
+<div class="d-flex justify-content-start">
+    <a class="btn btn-lg btn-danger btn-lg-square me-3" id="twitter-share" target="_blank">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a class="btn btn-lg btn-info btn-lg-square me-3" id="facebook-share" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="btn btn-lg btn-success btn-lg-square" id="whatsapp-share" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+<hr>
+<script>
+    // Get the current page URL
+    const pageUrl = encodeURIComponent(window.location.href);
+
+    // Update share links dynamically
+     document.getElementById("twitter-share").href = 
+    `https://twitter.com/intent/tweet?url=${pageUrl}&text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System`;
+
+     document.getElementById("facebook-share").href = 
+    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+     document.getElementById("whatsapp-share").href = 
+    `https://api.whatsapp.com/send?text=Check%20out%20how%20much%20it%20will%20cost%20you%20to%20power%20your%20house%20or%20office%20with%20Solar%20Power%20System:%20${pageUrl}`;
+</script>
+<!-- Share News End-->
+        
+        <!-- User Details Section -->
+        <h5>Fill in your Personal Details</h5><div id="user-details" class="mb-4">
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userName" placeholder="Enter your Name" required>
+                <label for="userName">Enter your Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="tel" class="form-control" id="userPhone" placeholder="Enter Phone Number" required>
+                <label for="userPhone">Enter Phone Number</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="userLocation" placeholder="Enter Location (Town and City) " required>
+                <label for="userLocation">Enter Location (Town and State)</label>
+            </div>
+        </div>
+        
+        <!-- Appliance Input Section -->
+       <h5>Fill in your Appliances</h5>
+        <small><i>Enter the quantity of each of the appliances you have and will want the Solar system to power. Ignore those not available.</i></small>
+        <div id="form-container"></div>
+        
+        <!-- Calculate Button -->
+        <div style="display: flex; justify-content: center;">
+  <button id="calculateBtn" class="btn btn-primary mt-3" style="margin-bottom: 15px;">Calculate</button>
+</div>
+
+    <!-- Results Section -->
+        <div id="result" class="mt-4 p-3 bg-light border rounded d-none">
+            <h4 style="color: green;">Below is your Estimated System Requirements and Costs:</h4>
+            <p id="totalPower" style="font-weight: bold;"></p>
+            <p id="inverter"></p>
+            <p id="batteries"></p>
+            <p id="panels"></p>
+            <p id="chargeController"></p>
+            <p id="batteryRack"></p>
+            <p id="cablesAccessories"></p>
+            <p id="logisticsInstallation"></p>
+            <h3 id="totalCost" style="color: red;"></h3>
+        </div>
+    </div>
+
+<script>
+        // Appliance Wattages
+        const appliances = {
+            "Light Bulb (LED)": 20,
+            "Electric Fan (Standing or Ceiling)": 100,
+            "Television": 150,
+            "Decoder": 50,
+            "Sound System": 200,
+            "Laptop": 100,
+            "Desktop Computer": 300,
+            "Student Refrigerator": 400,
+            "Standing Refrigerator": 700,
+            "Deep Freezer": 800,
+            "Hair Clipper": 30,
+            "Electric Hair Dryer": 2000,
+            "Electric Sewing Machine": 500,
+            "Air Conditioner": 2000,
+            "Electric Iron": 1500,
+            "Microwave Oven": 1000,
+            "Washing Machine": 1000,
+            "Blender": 700,
+            "Electric Kettle": 1500,
+            "Water Heater": 2000,
+            "Pumping Machine": 2000
+        };
+
+        // Pricing Data
+        const pricing = {
+            inverters: [140000, 180000, 230000, 290000, 390000, 450000, 650000, 1200000, 1400000],
+            panels: { "250W": 70000, "350W": 100000 },
+            chargeControllers: [80000, 100000, 150000, 230000, 260000],
+            batteryRack: [30000, 40000, 60000, 100000, 120000, 130000, 170000, 220000, 300000],
+            cablesAccessories: [60000, 70000, 90000, 100000, 120000, 140000, 180000, 220000, 250000],
+            logisticsInstallation: [80000, 100000, 120000, 150000, 170000, 180000, 250000, 300000, 400000],
+            batteries: 300000
+        };
+
+        // Populate Form with Appliances
+        const formContainer = document.getElementById("form-container");
+        Object.keys(appliances).forEach((appliance, index) => {
+            formContainer.innerHTML += `
+                <div class="form-floating mt-3">
+                    <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
+                    <label for="appliance-${index}">${appliance}</label>
+                </div>`;
+        });
+        
+// Function to Submit Data to Google Sheets
+function submitToSheet(name, phone, location, totalPower, totalCost) {
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbyq5GJ32feSN4MOHZPmxoT9TIkCoMEMQOiZpeZlGkTDLuB-OaQDZ3znSsMAE5F8m9fE/exec"; // Replace with your deployed Apps Script URL
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("location", location);
+    formData.append("totalPower", totalPower);
+    formData.append("totalCost", totalCost);
+
+    fetch(scriptUrl, { method: "POST", body: formData })
+        .then(response => response.json())
+        .then(data => console.log(data.status === "success" ? "Data submitted successfully!" : "Error submitting data."))
+        .catch(() => console.log("There was an error submitting the data. Please try again."));
+}
+
+
+        // Calculate Total Power and Materials
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+            const name = document.getElementById("userName").value.trim();
+            const phone = document.getElementById("userPhone").value.trim();
+            const location = document.getElementById("userLocation").value.trim();
+
+            // Validate User Details
+            if (!name || !phone || !location) {
+                alert("Please fill out your Name, Phone Number, and Location to calculate.");
+                return;
+            }
+
+            // Validate phone number (must be a valid Nigerian number with exactly 11 digits)
+            const phoneRegex = /^(070|080|081|090|091|071|093|094|095|096|097|098|099)[0-9]{8}$/;
+            if (!phoneRegex.test(phone)) {
+                alert("Please enter a valid Nigerian phone number with 11 digits.");
+                return;
+            }
+
+            let isValid = true;
+            Object.keys(appliances).forEach((appliance, index) => {
+                const quantity = document.getElementById(`appliance-${index}`).value;
+                if (quantity && (isNaN(quantity) || quantity < 0)) {
+                    alert(`Please enter a valid number for ${appliance}.`);
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) return;
+
+            let totalPower = 0;
+            Object.values(appliances).forEach((watt, index) => {
+                const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
+                totalPower += watt * quantity;
+            });
+
+            // Determine Inverter Capacity and Costs
+            const inverterIndex = totalPower <= 1000 ? 0 : totalPower <= 1500 ? 1 : totalPower <= 2000 ? 2 :
+                totalPower <= 2500 ? 3 : totalPower <= 3000 ? 4 : totalPower <= 3500 ? 5 :
+                totalPower <= 5000 ? 6 : totalPower <= 7500 ? 7 : 8;
+            const inverterCapacity = ["1kVA", "1.5kVA", "2kVA", "2.5kVA", "3kVA", "3.5kVA", "5kVA", "7.5kVA", "10kVA"][inverterIndex];
+            const inverterCost = pricing.inverters[inverterIndex];
+
+            // Determine Batteries
+            const batteries = inverterIndex === 0 ? 1 : inverterIndex === 1 ? 2 : inverterIndex <= 3 ? 4 :
+                inverterIndex <= 5 ? 8 : inverterIndex <= 7 ? 12 : 16;
+            const batteryCost = batteries * pricing.batteries;
+
+            // Determine Panels
+            const panelType = inverterIndex <= 5 ? "250W" : "350W";
+            const panels = inverterIndex <= 5 ? batteries * 3 : batteries * 2;
+            const panelCost = panels * pricing.panels[panelType];
+
+            // Determine Charge Controller
+            const chargeControllerIndex = inverterIndex <= 1 ? 0 : inverterIndex <= 3 ? 1 :
+                inverterIndex <= 5 ? 2 : inverterIndex === 6 ? 3 : 4;
+            const chargeControllerCost = pricing.chargeControllers[chargeControllerIndex];
+
+            // Additional Costs
+            const batteryRackCost = pricing.batteryRack[inverterIndex];
+            const cablesAccessoriesCost = pricing.cablesAccessories[inverterIndex];
+            const logisticsInstallationCost = pricing.logisticsInstallation[inverterIndex];
+
+            // Total Cost
+            const totalCost = inverterCost + batteryCost + panelCost + chargeControllerCost +
+                batteryRackCost + cablesAccessoriesCost + logisticsInstallationCost;
+
+            // Display Results
+            document.getElementById("result").classList.remove("d-none");
+            document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+            document.getElementById("inverter").innerText = `Solar Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})`;
+            document.getElementById("batteries").innerText = `Tall Tubular Batteries: ${batteries} (₦${batteryCost.toLocaleString()})`;
+            document.getElementById("panels").innerText = `Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})`;
+            document.getElementById("chargeController").innerText = `MPPT Charge Controller: ₦${chargeControllerCost.toLocaleString()}`;
+            document.getElementById("batteryRack").innerText = `Battery Rack & Solar Rails: ₦${batteryRackCost.toLocaleString()}`;
+            document.getElementById("cablesAccessories").innerText = `Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}`;
+            document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
+            document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+
+             
+             // Submit to Google Sheets
+    submitToSheet(name, phone, location, totalPower, totalCost);
+            
+            // WhatsApp Link
+            const whatsappNumber = "2348022987177"; 
+            const message = encodeURIComponent(`
+                Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:
+                - Total Power Requirement: ${totalPower}W
+                - Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})
+                - Batteries: ${batteries} (₦${batteryCost.toLocaleString()})
+                - Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})
+                - Charge Controller: ₦${chargeControllerCost.toLocaleString()}
+                - Battery Rack & Rails: ₦${batteryRackCost.toLocaleString()}
+                - Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}
+                - Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}
+                - Estimated Total Cost: ₦${totalCost.toLocaleString()}
+                I would like to discuss my specific needs.
+            `);
+
+            // Insert WhatsApp link into the result
+            document.getElementById("result").insertAdjacentHTML("beforeend", `
+                <div class="mt-3">
+                    <hr>
+                    <p><i>Want to learn more, have specific questions or discuss further?</i></p>
+                    <a href="https://wa.me/${whatsappNumber}?text=${message}" 
+                       class="btn btn-primary" target="_blank">
+                       Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            `);
+        });
+    </script>
+
+       
+<!-- <script>
+    
+    // Appliance Wattages
+    const appliances = {
+        "Light Bulb (LED)": 20,
+        "Electric Fan (Standing or Ceiling)": 100,
+        "Television": 150,
+        "Decoder": 50,
+        "Sound System": 200,
+        "Laptop": 100,
+        "Desktop Computer": 300,
+        "Student Refrigerator": 400,
+        "Standing Refrigerator": 700,
+        "Deep Freezer": 800,
+        "Hair Clipper": 30,
+        "Electric Hair Dryer": 2000,
+        "Electric Sewing Machine": 500,
+        "Air Conditioner": 2000,
+        "Electric Iron": 1500,
+        "Microwave Oven": 1000,
+        "Washing Machine": 1000,
+        "Blender": 700,
+        "Electric Kettle": 1500,
+        "Water Heater": 2000,
+        "Pumping Machine": 2000
+    };
+
+    // Pricing Data
+    const pricing = {
+        inverters: [140000, 180000, 230000, 290000, 390000, 450000, 650000, 1200000, 1400000],
+        panels: { "250W": 70000, "350W": 100000 },
+        chargeControllers: [80000, 100000, 150000, 230000, 260000],
+        batteryRack: [30000, 40000, 60000, 100000, 120000, 130000, 170000, 220000, 300000],
+        cablesAccessories: [60000, 70000, 90000, 100000, 120000, 140000, 180000, 220000, 250000],
+        logisticsInstallation: [80000, 100000, 120000, 150000, 170000, 180000, 250000, 300000, 400000],
+        batteries: 300000
+    };
+
+    // Populate Form
+    const formContainer = document.getElementById("form-container");
+    Object.keys(appliances).forEach((appliance, index) => {
+        formContainer.innerHTML += `
+            <div class="form-floating mt-3">
+                <input type="number" class="form-control" id="appliance-${index}" placeholder="${appliance}" min="0">
+                <label for="appliance-${index}">${appliance}</label>
+            </div>`;
+    });
+       
+     // Function to Submit Data to Google Sheets
+function submitToSheet(name, phone, location, totalPower, totalCost) {
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbyq5GJ32feSN4MOHZPmxoT9TIkCoMEMQOiZpeZlGkTDLuB-OaQDZ3znSsMAE5F8m9fE/exec"; // Replace with your deployed Apps Script URL
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("location", location);
+    formData.append("totalPower", totalPower);
+    formData.append("totalCost", totalCost);
+
+    fetch(scriptUrl, { method: "POST", body: formData })
+        .then(response => response.json())
+        .then(data => console.log(data.status === "success" ? "Data submitted successfully!" : "Error submitting data."))
+        .catch(() => console.log("There was an error submitting the data. Please try again."));
+}
+
+    
+    // Calculate Total Power and Materials
+    document.getElementById("calculateBtn").addEventListener("click", () => {
+        const name = document.getElementById("userName").value.trim();
+        const phone = document.getElementById("userPhone").value.trim();
+        const location = document.getElementById("userLocation").value.trim();
+
+        // Validate User Details
+        if (!name || !phone || !location) {
+            alert("Please fill out your Name, Phone Number, and Location to calculate.");
+            return;
+        }
+
+            // Validate phone number (must be a valid Nigerian number with exactly 11 digits)
+    const phoneRegex = /^(070|080|081|090|091|071|093|094|095|096|097|098|099)[0-9]{8}$/;
+    if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid Nigerian phone number with 11 digits.");
+        return;
+    }
+
+    // Validate power consumption input fields: Ensure that the user enters valid numbers
+    let isValid = true;
+    Object.keys(appliances).forEach((appliance, index) => {
+        const quantity = document.getElementById(`appliance-${index}`).value;
+        if (quantity && (isNaN(quantity) || quantity < 0)) {
+            alert(`Please enter a valid number for ${appliance}.`);
+            isValid = false;
+        }
+    });
+
+    if (!isValid) return;
+        
+        let totalPower = 0;
+        Object.values(appliances).forEach((watt, index) => {
+            const quantity = parseInt(document.getElementById(`appliance-${index}`).value) || 0;
+            totalPower += watt * quantity;
+        });
+
+        // Determine Inverter Capacity
+        const inverterIndex = totalPower <= 1000 ? 0 : totalPower <= 1500 ? 1 : totalPower <= 2000 ? 2 :
+            totalPower <= 2500 ? 3 : totalPower <= 3000 ? 4 : totalPower <= 3500 ? 5 :
+            totalPower <= 5000 ? 6 : totalPower <= 7500 ? 7 : 8;
+        const inverterCapacity = ["1kVA", "1.5kVA", "2kVA", "2.5kVA", "3kVA", "3.5kVA", "5kVA", "7.5kVA", "10kVA"][inverterIndex];
+        const inverterCost = pricing.inverters[inverterIndex];
+
+        // Determine Batteries (1kVA -> 1 battery, 1.5kVA -> 2 batteries, etc.)
+        const batteries = inverterIndex === 0 ? 1 : inverterIndex === 1 ? 2 : inverterIndex <= 3 ? 4 :
+            inverterIndex <= 5 ? 8 : inverterIndex <= 7 ? 12 : 16;
+        const batteryCost = batteries * pricing.batteries;
+
+        // Determine Solar Panels
+        const panelType = inverterIndex <= 5 ? "250W" : "350W";
+        const panels = inverterIndex <= 5 ? batteries * 3 : batteries * 2;
+        const panelCost = panels * pricing.panels[panelType];
+
+        // Determine Charge Controller
+        const chargeControllerIndex = inverterIndex <= 1 ? 0 : inverterIndex <= 3 ? 1 :
+            inverterIndex <= 5 ? 2 : inverterIndex === 6 ? 3 : 4;
+        const chargeControllerCost = pricing.chargeControllers[chargeControllerIndex];
+
+        // Additional Costs
+        const batteryRackCost = pricing.batteryRack[inverterIndex];
+        const cablesAccessoriesCost = pricing.cablesAccessories[inverterIndex];
+        const logisticsInstallationCost = pricing.logisticsInstallation[inverterIndex];
+
+        // Total Cost
+        const totalCost = inverterCost + batteryCost + panelCost + chargeControllerCost +
+            batteryRackCost + cablesAccessoriesCost + logisticsInstallationCost;
+
+        // Display Results
+        document.getElementById("result").classList.remove("d-none");
+        document.getElementById("totalPower").innerText = `Estimated Total Power Requirement = ${totalPower} Watts`;
+        document.getElementById("inverter").innerText = `Solar Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})`;
+        document.getElementById("batteries").innerText = `Tall Tubular Batteries: ${batteries} (₦${batteryCost.toLocaleString()})`;
+        document.getElementById("panels").innerText = `Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})`;
+        document.getElementById("chargeController").innerText = `MPPT Charge Controller: ₦${chargeControllerCost.toLocaleString()}`;
+        document.getElementById("batteryRack").innerText = `Battery Rack & Solar Rails: ₦${batteryRackCost.toLocaleString()}`;
+        document.getElementById("cablesAccessories").innerText = `Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}`;
+        document.getElementById("logisticsInstallation").innerText = `Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}`;
+        document.getElementById("totalCost").innerText = `Estimated Total Cost: ₦${totalCost.toLocaleString()}`;
+
+        // Silently send data to Google Sheets
+  submitToSheet(name, phone, location, totalPower, totalCost);
+            
+        // Generate WhatsApp Link
+        const whatsappNumber = "2348022987177"; // Replace with the expert's WhatsApp number
+        const message = encodeURIComponent(
+            `Hello, I need assistance with my solar power setup. Here are my requirements from Calculation:\n` +
+            `- Total Power Requirement: ${totalPower}W\n` +
+            `- Inverter: ${inverterCapacity} (₦${inverterCost.toLocaleString()})\n` +
+            `- Batteries: ${batteries} (₦${batteryCost.toLocaleString()})\n` +
+            `- Solar Panels: ${panels} x ${panelType} (₦${panelCost.toLocaleString()})\n` +
+            `- Charge Controller: ₦${chargeControllerCost.toLocaleString()}\n` +
+            `- Battery Rack & Rails: ₦${batteryRackCost.toLocaleString()}\n` +
+            `- Cables & Accessories: ₦${cablesAccessoriesCost.toLocaleString()}\n` +
+            `- Logistics & Installation: ₦${logisticsInstallationCost.toLocaleString()}\n` +
+            `- Estimated Total Cost: ₦${totalCost.toLocaleString()}\n\n` +
+            `I would like to discuss my specific needs.`
+        `);
+
+        // Insert WhatsApp Link after the results section
+document.getElementById("result").insertAdjacentHTML("beforeend", `
+  <div class="mt-3">
+    <hr>
+    <p><i>Want to learn more, have specific questions or discuss further?</i></p>
+    <a href="https://wa.me/${whatsappNumber}?text=${message}" 
+       class="btn btn-primary" 
+       target="_blank">
+       Chat Now with an Expert <i class="fa fa-arrow-right ms-2"></i>
+    </a>
+  </div>
+     `);
+    });
+</script>
+
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container text-center">
+            <p class="mb-2">Copyright &copy; <a class="fw-semi-bold" href="index.html">Tasha Energy</a>, All Right Reserved.</p>
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <p class="mb-0">Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">CyberBill Africa</a></p>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
