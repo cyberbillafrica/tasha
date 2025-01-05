@@ -342,7 +342,7 @@ textarea.addEventListener('input', () => {
             <div class="form-floating mt-3">
                 <select class="form-select" id="userAvailability" name="availability" required>
                     <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
+                    <option value="Yes">Yes (Increases chances of jobs)</option>
                     <option value="No">No</option>
                 </select>
                 <label for="userAvailability">Are you willing to Work outside your States</label>
@@ -350,7 +350,7 @@ textarea.addEventListener('input', () => {
 
             <!-- Preferred Locations for Work -->
           <div>
-              <p><i>Tell us other states or cities you can go to execute an installation at no extra cost</i></p>
+              <p><i>If you choose Yes above, Tell us other states or cities you can go for installation at no extra cost. If every state write All</i></p>
               <div class="form-floating mt-3">
                    <input type="text" class="form-control" id="userPreferred" name="preferredLocations" placeholder="Enter Preferred Locations">
                 <label for="userPreferred">Preferred Locations for Work</label>
@@ -361,7 +361,7 @@ textarea.addEventListener('input', () => {
                 <input class="form-check-input" type="checkbox" id="userAuthenticity" name="authenticity" required>
                 <label class="form-check-label" for="userAuthenticity">
                     I confirm all information provided is accurate and I have read and agreed to the
-               <a href="terms.html" target="_blank">Terms and Conditions</a>.
+               <a href="terms.html" target="_blank"><b>Terms and Conditions</b></a>.
                 </label>
             </div>
 
@@ -373,7 +373,7 @@ textarea.addEventListener('input', () => {
 
             <!-- Submit Button -->
             <div class="mt-4">
-                <button type="submit" class="btn btn-success w-80">Save Details and Continues</button>
+                <button type="submit" class="btn btn-success text-center w-100">Save Details and Continues</button>
             </div>
         </form>
    </div>
