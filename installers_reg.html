@@ -39,6 +39,16 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+<script>
+        function showUploadInstructions() {
+            // Hide the form after submission
+            document.getElementById('registrationForm').style.display = 'none';
+            
+            // Show the success message and upload instructions
+            document.getElementById('uploadInstructions').style.display = 'block';
+        }
+</script>
 </head>
 
 <body>
@@ -338,10 +348,10 @@ textarea.addEventListener('input', () => {
 
             <!-- Preferred Locations for Work -->
             <div class="form-floating mt-3">
-                 <input type="text" class="form-control" id="userPreferred" name="preferredLocations" placeholder="Enter Preferred Locations">
+                <p>Tell us other states or cities you can go to execute an installation at no extra cost</p>
+                <input type="text" class="form-control" id="userPreferred" name="preferredLocations" placeholder="Enter Preferred Locations">
                 <label for="userPreferred">Preferred Locations for Work</label>
-            <p>Tell us other states or cities you can go to execute an installation at no extra cost</p>
-               </div>
+            </div>
 
             <!-- Declaration -->
             <div class="form-check mt-3">
@@ -363,7 +373,22 @@ textarea.addEventListener('input', () => {
                 <button type="submit" class="btn btn-success w-100">Submit Registration</button>
             </div>
         </form>
-    </div>
+   </div>
+
+<!-- Success Message and Upload Instructions -->
+        <div id="uploadInstructions" style="display: none;" class="mt-5">
+            <h3>Registration Successful!</h3>
+            <p>Your details have been saved successfully. To complete your registration, please upload the required documents using the link below.</p>
+            <ul>
+                <li>Picture showing your face (passport-style)</li>
+                <li>Picture at a solar installation site</li>
+                <li>Picture of a completed project</li>
+                <li>Government Means of Identification (NIN, Voter’s Card, Driver’s License, or Passport)</li>
+            </ul>
+            <a href="https://forms.gle/RM1a2FUU7htEi4so6" class="btn btn-primary w-100">Upload Documents</a>
+        </div>
+
+    
 <!-- Copyright Start -->
     <div class="container-fluid copyright bg-dark py-4">
         <div class="container text-center">
